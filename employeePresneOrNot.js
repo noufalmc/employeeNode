@@ -7,19 +7,18 @@ const IS_WAGE_PERHOUR=20;
 let empCheck=Math.floor(Math.random()*10)%3;
 let wage=IS_WAGE_PERHOUR*getHour();
 console.log("Wage is"+wage);
-
-
-
 function getHour()
 {
     let hour=0;
-if(empCheck==IS_PARTTIME)
-{
-    hour=IS_PARTTIME_HOUR;
-}
-else if(empCheck==IS_FULLTIME)
-{
-    hour=IS_FULLTIME_HOUR;
-}
+    switch(empCheck)
+    {
+        case IS_PARTTIME:
+            hour=IS_PARTTIME_HOUR;
+            break;
+        case IS_FULLTIME:
+            hour=IS_FULLTIME_HOUR;
+            break;    
+    
+    }
 return hour;
 }
