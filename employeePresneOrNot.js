@@ -1,10 +1,18 @@
-const IS_PRESENT=1;
-let empCheck=Math.floor(Math.random()*10)%2;
-if(empCheck==1)
+const IS_NOTIME=0;
+const IS_PARTTIME=1;
+const IS_FULLTIME=2;
+const IS_FULLTIME_HOUR=8;
+const IS_PARTTIME_HOUR=4;
+const IS_WAGE_PERHOUR=20;
+let empCheck=Math.floor(Math.random()*10)%3;
+let hour=0;
+if(empCheck==IS_PARTTIME)
 {
-    console.log("Employee Present");
+    hour=IS_PARTTIME_HOUR;
 }
-else
+else if(empCheck==IS_FULLTIME)
 {
-    console.log("Employee Not Present");
+    hour=IS_FULLTIME_HOUR;
 }
+let wage=hour*IS_WAGE_PERHOUR;
+console.log("Wage is"+wage);
