@@ -16,8 +16,8 @@ while(MAX_HRS_IN_MONTH<=160 && tota_workingDays<NO_OF_WORKINGDAYS)
   random=getWorkingHours(empCheck);
   tota_workingDays++;
   employee[counter]=calculateWage(random);
-  dailyMap.set(counter,calculateWage(random));
   counter++;
+  dailyMap.set(counter,random);
   totalEmpHrs+=random;
 }
 function calculateWage(empHrs)
@@ -55,17 +55,34 @@ function fulltimeWage(empWage)
 {
     return empWage.includes("160");
 }
+function totalHour(hour,value)
+{
+  return hour+value;
+}
 let empFullDay=employee.reduce(totalWage,0);
 let employeeFull=employee.map(mapWithDailyWage);
-employee.filter(n=>n==160).forEach(n=>console.log("Fully Earned => "+n));
+let partTime=[];
+let fullTime=[];
+let noTime=[];
 dailyMap.forEach((v,k)=>{
-    console.log("day=>"+k+"value=>"+v);
+    console.log("day=> "+k+"Hour =>"+v);
 })
-console.log("First=>"+employeeFull.find(fulltimeWage));
-console.log("Every=>"+employeeFull.every(fulltimeWage));
-console.log("Log=>"+employeeFull);
-console.log("Emp Full Day=>"+empFullDay);
-console.log("The wage is "+wage);
-console.log("Total Hour Is =>"+totalEmpHrs);
-console.log("Total Day Is =>"+tota_workingDays);
-console.log("The Employee array is "+employee);
+dailyMap.forEach((value,key,Map)=>{
+if(value==4) partTime.push(key);
+if(value==8) fullTime.push(key);
+if(value==0) noTime.push(key)
+});
+
+console.log("Employee Array"+employee);
+console.log("Part Time"+partTime);
+console.log("Full Time"+fullTime);
+console.log("No Job"+noTime);
+// let totalHours=Array.from(dailyMap.values()).reduce(totalHour,0);
+// console.log("Total Hour =>"+totalHours+"Total wage=>"+calculateWage(totalHours));
+// console.log("First=>"+employeeFull.find(fulltimeWage));
+// console.log("Log=>"+employeeFull);
+// console.log("Emp Full Day=>"+empFullDay);
+// console.log("The wage is "+wage);
+// console.log("Total Hour Is =>"+totalEmpHrs);
+// console.log("Total Day Is =>"+tota_workingDays);
+// console.log("The Employee array is "+employee);
