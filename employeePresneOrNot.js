@@ -9,12 +9,14 @@ let tota_workingDays=wage=0;
 let counter=0;
 let random,empCheck;
 let employee=[];
+var dailyMap=new Map();
 while(MAX_HRS_IN_MONTH<=160 && tota_workingDays<NO_OF_WORKINGDAYS)
 {
   empCheck=Math.floor(Math.random()*3);
   random=getWorkingHours(empCheck);
   tota_workingDays++;
   employee[counter]=calculateWage(random);
+  dailyMap.set(counter,calculateWage(random));
   counter++;
   totalEmpHrs+=random;
 }
@@ -56,6 +58,9 @@ function fulltimeWage(empWage)
 let empFullDay=employee.reduce(totalWage,0);
 let employeeFull=employee.map(mapWithDailyWage);
 employee.filter(n=>n==160).forEach(n=>console.log("Fully Earned => "+n));
+dailyMap.forEach((v,k)=>{
+    console.log("day=>"+k+"value=>"+v);
+})
 console.log("First=>"+employeeFull.find(fulltimeWage));
 console.log("Every=>"+employeeFull.every(fulltimeWage));
 console.log("Log=>"+employeeFull);
