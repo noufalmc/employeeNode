@@ -41,3 +41,5 @@ function getWorkingHours(empCheck)
     }
 }
 console.log("UC10 => \n "+objectEmployeeArray);
+let totalWage=objectEmployeeArray.filter(object=>object.dailyWage>0).reduce();
+console.log("Daily Wage>0"+totalWage);
