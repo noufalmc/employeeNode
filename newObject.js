@@ -45,9 +45,8 @@ function getWorkingHours(empCheck)
             return 0;    
     }
 }
-console.log("UC10 => \n "+objectEmployeeArray);
-let totalWage=objectEmployeeArray.filter(object=>object.dailyWage>0).reduce();
-console.log("Total wage Wage=>"+totalWage);
+console.log("UC10 => \n "+objectEmployeeArray.toString());
+
 //UC11A Return Total Wage and Total Hour
 let totalWage=objectEmployeeArray.filter(object=>object.dailyWage>0).
 reduce((total,objectEmployeeArray)=>total+=objectEmployeeArray.dailyWage,0);
@@ -66,4 +65,3 @@ console.log(partTimeFilter);
 //UC11D No Working Days Using Map
 let noWorkingDays=objectEmployeeArray.filter(object=>object.dailyHours==0).map(object=>object.toString());
 console.log(noWorkingDays);
->>>>>>> UC11_ArrowFunction
