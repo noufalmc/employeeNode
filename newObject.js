@@ -7,6 +7,7 @@ let counter=0;
 let random;
 let empCheck;
 let objectEmployeeArray=[];
+let partworkingDay=new Map();
 while(MAX_HRS_IN_MONTH<=160 && tota_workingDays<20)
 {
   empCheck=Math.floor(Math.random()*3);
@@ -28,6 +29,10 @@ function calculateWage(empHrs)
 {
         return empHrs*IS_WAGE_PERHOUR;
 }
+function getSalarySum(sum,total)
+{
+    return sum+total;
+}
 function getWorkingHours(empCheck)
 {
     switch(empCheck)
@@ -41,3 +46,21 @@ function getWorkingHours(empCheck)
     }
 }
 console.log("UC10 => \n "+objectEmployeeArray);
+//UC11A Return Total Wage and Total Hour
+let totalWage=objectEmployeeArray.filter(object=>object.dailyWage>0).
+reduce((total,objectEmployeeArray)=>total+=objectEmployeeArray.dailyWage,0);
+ 
+let totalHour=objectEmployeeArray.filter(object=>object.dailyHours>0).reduce((total,objectEmployeeArray)=>
+total+=objectEmployeeArray.dailyHours,0);
+
+console.log("Total Wage => "+totalWage);
+console.log("Total Hour => "+totalHour);
+//UC11B Show The Full Working Days Using Foreach
+objectEmployeeArray.filter(object=>object.dailyHours==8).
+forEach(object=>process.stdout.write(object.toString()));
+//UC11C Show Part Working Days Using Map
+let partTimeFilter=objectEmployeeArray.filter(object=>object.dailyHours==4).map(object=>object.toString());
+console.log(partTimeFilter);
+//UC11D No Working Days Using Map
+let noWorkingDays=objectEmployeeArray.filter(object=>object.dailyHours==0).map(object=>object.toString());
+console.log(noWorkingDays);
