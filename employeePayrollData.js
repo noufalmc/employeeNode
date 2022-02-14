@@ -1,41 +1,57 @@
+/**
+ * Author :Noufal mc
+ * Date   :13-Feb-2022
+ * Employee Payroll
+ */
 class EmployeePayrollData
 {
     //Property
     id;
     salary;
-    name;
     gender;
     startDate;
-    constructor(id,name,salary,gender,startDate)
+    //Contructor
+    constructor(...params)
     {
-        this.name=name;
-        this.id=id;
-        this.salary=salary;
-        this.gender=gender;
-        this.startDate=startDate;
+      this.id = params[0];
+      this.name = params[1]; 
+      this.salary = params[2]; 
+      this.gender = params[3]; 
+      this.startDate = params[4];
     }
-    set name(name)
-    {
-        let nameRegex=RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if(nameRegex.test(name))
-        {
-            this.name=name;
-        }
-        else
-        {
-            throw "Name Is Incorrect";
-        }
-    }
+    //getter
     get name()
     {
-        return this.name;
+        return this._name;
+    }
+    //setter
+    set name(name)
+    {
+        let nameRegex=RegExp('^[A-Z]{1}[a-z]{3,}$')
+      if(nameRegex.test(name))
+          this._name = name;
+      else
+        throw "Name is Incorrect";
     }
     toString()
     {
-        return "\n Id => "+this.id+"Name => "+this.name+"Salary =>"+this.salary+" Gender => "+this.gender+"Start date"+this.startDate;
+        const options={year:'numeric',month:'long',day:'numeric'};
+        const startEmpDate = this.startDate === undefined ? "undefined" :
+               this.startDate.toLocaleDateString("en-US",options);
+        return "\n Id => "+this.id+" Name =>"+this.name+
+        " Salary =>"+this.salary+" Gender => "+this.gender+" Start date =>"+startEmpDate;
     }
 }
-
-
-let employeePayrollData=new EmployeePayrollData(10,'noufal',25000,"F",new Date());
+let employeePayrollData=new EmployeePayrollData(1,'Mark',25000,"F",new Date());
 console.log(employeePayrollData.toString());
+//try
+try{
+  employeePayrollData.name = "john";
+  console.log(employeePayrollData.toString());
+}
+catch(e){
+  console.error(e);
+}
+let newEmployeePayrollData = new EmployeePayrollData(2, "Terrisa", 30000, "F", new Date()); 
+console.log(newEmployeePayrollData.toString());
+
